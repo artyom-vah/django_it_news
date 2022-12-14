@@ -1,0 +1,37 @@
+{% extends 'blog/main.html' %}78
+{% block main_section %}
+     {% for post in news %}
+        <div class="alert alert-light">
+             <h1>{{ post.title }}</h1>
+             <p> {{ post.text }} </p>
+             <div class="row">
+                 <div class="col-md-2">
+                 {% if post.avtor.profile.img.url %}
+                     <img src="{{ post.avtor.profile.img.url }}" alt="{{ post.avtor }}" class="user_image">
+                 {% else %}
+                     <img src="/pictures/default.jpg" alt="{{ post.avtor }}" class="user_image">
+                 {% endif %}
+                 </div>
+                 <div class="col-md-10">
+                      <span class="text-muted"> <b>Публикация: </b>{{ post.date|date:"j F Y, время: H:i:s" }} </span>
+                      <p><b>Автор:</b> <mark>{{ post.avtor }}</mark> </p>
+                 </div>
+             </div>
+        </div>
+    {% endfor %}
+{% endblock main_section %}
+
+{% block aside_news_section %}
+    <div class="">
+                <p>
+                    <h3><b>Плазменный рабочий стол</b></h3>
+                   Среда рабочего стола Plasma отдает предпочтение технологиям KDE/QT
+                    и из всех рабочих столов предлагает наиболее полные конфигурации
+                    и опции внутри пользовательского интерфейса.
+                   <img src="https://pingvinus.ru/cr_images/userpicture/n/4186-0.png" class="img-thumbnail">
+                </p>
+                <a href ="https://manjaro.org/download/" target = "_blank">
+                    <button class="btn btn-secondary"> Посмотреть </button>
+                </a>
+    </div>
+{% endblock aside_news_section %}

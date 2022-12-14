@@ -1,0 +1,40 @@
+{% extends 'blog/main.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+    <div class="form-section">
+        <h2> Кабинет пользователя </h2>
+        <div class="media text-muted pt-3">
+             <img class="mr-2 rounded" style="width: 64px; height: 64px;" src="{{ user.profile.img.url }}">
+             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-grey">
+             <strong class="d-block text-gray-dark"><b>Имя:</b> {{ user.username }}</strong>
+             <b>Email:</b> {{ user.email }}
+             </p>
+        </div>
+    <h3 class="mt-4">Изменить данные о пользователе</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ update_user|crispy }}
+            {{ img_profile|crispy }}
+            <br>
+            <button type="submit" class="btn btn-outline-warning">Обновить данные</button>
+        </form>
+
+    </div>
+{% endblock main_section  %}
+
+{% block aside_news_section %}
+    <div class="">
+        <p>
+        <h3><b>Топ-25 самых рекомендуемых книг по программированию</b></h3>
+        Программирование – та сфера, в которой практика значит куда больше,
+        чем теория, но знания лишними не бывают. Представляем подборку из 12 книг,
+        которые должен прочитать каждый программист.   Список составлен в произвольном
+        порядке, не по значимости или простоте\сложности книг.
+        <img src="https://www.kv.by/sites/default/files/pictures/userpictures/2018/02/15/5348/1_0.png" class="img-thumbnail">
+        </p>
+
+        <a href ="https://tproger.ru/books/the-25-most-recommended-programming-books-of-all-time/" target = "_blank">
+            <button class="btn btn-dark">Посмотреть</button>
+        </a>
+    </div>
+{% endblock aside_news_section %}
